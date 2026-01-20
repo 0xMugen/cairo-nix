@@ -3,12 +3,12 @@
   pkgs,
   ...
 }: let
-  version = "0.3.7";
+  version = "0.4.2";
   src = pkgs.fetchFromGitHub {
     owner = "xJonathanLEI";
     repo = "starkli";
     rev = "v${version}";
-    hash = "sha256-q1H/B0WRM9/ZHODbEDuBu9RhscrBMKqAgIbFDwrX9cM=";
+    hash = "sha256-9eIlZWdscnZHBRCkAQxoM+xk/GD9HAKvbffVq3Ntjws=";
   };
 
   rustPlatform = pkgs.makeRustPlatform {
@@ -29,8 +29,7 @@ in
     # https://discourse.nixos.org/t/rust-openssl-woes/12340
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
 
-    useFetchCargoVendor = true;
-    cargoHash = "sha256-6pB/bklkWlTcGRUm1fb1Qi0gOtGS34kKj/ec0T/+VS0=";
+    cargoHash = "sha256-OTOAzkX9q8fsJvowLj5Uk+Kj3S5BCbs7boP7AaKjEsw=";
 
     # Workaround for https://github.com/NixOS/nixpkgs/pull/300532
     # cargoDepsHook = ''
