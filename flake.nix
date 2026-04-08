@@ -82,7 +82,17 @@
           scarb-nightly = import ./packages/scarb-nightly.nix {inherit pkgs lib;};
 
           slot = import ./packages/slot-download.nix {inherit pkgs lib;};
-          starkli = import ./packages/starkli.nix {inherit pkgs lib;};
+          starknet-sierra-compile = import ./packages/starknet-sierra-compile.nix {inherit pkgs lib;};
+          starkli = let
+            unwrapped = import ./packages/starkli.nix {inherit pkgs lib;};
+            sierraCompile = import ./packages/starknet-sierra-compile.nix {inherit pkgs lib;};
+          in pkgs.writeShellScriptBin "starkli" ''
+            if [ "$1" = "declare" ]; then
+              exec ${unwrapped}/bin/starkli declare --compiler-path ${sierraCompile}/bin/starknet-sierra-compile "''${@:2}"
+            else
+              exec ${unwrapped}/bin/starkli "$@"
+            fi
+          '';
 
           katana = katana-download;
           torii = torii-download;
