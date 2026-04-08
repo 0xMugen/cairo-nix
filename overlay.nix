@@ -447,6 +447,22 @@
         cargoLock = null;
       };
     }
+
+    {
+      toolchainVersion = "2.13.1";
+      cairo = {
+        version = "2.13.1";
+        srcHash = "";
+        archiveHash = "sha256-0x9rjjb41snkk2f9y90gjrfqav9n6adbfl163hvw3sbwa6jcgcfm";
+        cargoHash = "";
+      };
+      scarb = {
+        version = "2.13.1";
+        srcHash = "";
+        cargoHash = "";
+        cargoLock = null;
+      };
+    }
   ];
 
   toolchains = builtins.listToAttrs (builtins.map (v: {
@@ -459,7 +475,7 @@ in {
   cairo-bin =
     toolchains
     // {
-      stable = toolchains."2.11.4";
-      beta = toolchains."2.11.4";
+      stable = toolchains."2.13.1";
+      beta = toolchains."2.13.1";
     };
 }

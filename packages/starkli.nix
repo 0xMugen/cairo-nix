@@ -29,16 +29,6 @@ in
     # https://discourse.nixos.org/t/rust-openssl-woes/12340
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
 
+    useFetchCargoVendor = true;
     cargoHash = "sha256-OTOAzkX9q8fsJvowLj5Uk+Kj3S5BCbs7boP7AaKjEsw=";
-
-    # Workaround for https://github.com/NixOS/nixpkgs/pull/300532
-    # cargoDepsHook = ''
-    #   fixStarknetLints() {
-    #     echo cargoDepsCopy=$cargoDepsCopy
-    #     sed -i '/workspace = true/d' $cargoDepsCopy/*/starknet*/Cargo.toml
-    #     # Remove all lints.
-    #     sed -n '/\[workspace.lints\]/q;p' $cargoDepsCopy/*/starknet-0.12.0/Cargo.toml
-    #   }
-    #   prePatchHooks+=(fixStarknetLints)
-    # '';
   }
